@@ -8,7 +8,7 @@
       <label for="title-search">WHAT HAVE YOU WATCHED RECENTLY?</label>
       <div class="search-row"><span class="search-icon">⌕</span><input id="title-search" name="title" value="{{ query|default('') }}" placeholder="Try Stranger Things, Inception..." required><button type="submit">Find my match <span>→</span></button></div>
       <div class="suggestions" id="suggestions" role="listbox"></div>
-      <div class="search-foot"><span>✦ Smart content-based recommendations</span><span>6,234 catalog titles</span></div>
+      <div class="search-foot"><span>✦ Smart content-based recommendations</span><span>{{ '{:,}'.format(stats.titles) }} catalog titles</span></div>
     </form>
     {% if error %}<div class="alert">{{ error }}{% if suggestions %}<div class="suggestion-links">{% for item in suggestions %}<a href="{{ url_for('recommend', title=item.title) }}">{{ item.title }} <small>{{ item.year }}</small></a>{% endfor %}</div>{% endif %}</div>{% endif %}
     <div class="hero-trust"><div class="avatar-stack"><i>✦</i><i>▶</i><i>◎</i></div><span>Discover something worth watching</span></div>
