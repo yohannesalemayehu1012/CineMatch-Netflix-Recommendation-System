@@ -2,8 +2,6 @@
 
 A Flask web application that recommends Netflix catalog titles using content-based machine learning. It represents each title through its genres, synopsis, cast, directors, and country, then ranks other titles with TF-IDF vectors and cosine similarity.
 
-> **Project provenance:** This is an independently modified and redesigned version of a project originally published as [Flask-Netflix-Recommendation-System](https://github.com/chesterking123/Flask-Netflix-Recommendation-System) by **Deep Contractor**. The original project attribution is retained here; the current application code, interface, and project organization have been substantially revised.
-
 ## Features
 
 - Modern responsive dark interface
@@ -100,6 +98,4 @@ The included CSV is a catalog snapshot and may not represent the current Netflix
 - `GET /api/search?q=dark` — title suggestions
 - `GET /api/recommendations/<title>` — selected title and ranked recommendations
 
-## Next improvements
-
-A later version could add an external movie metadata provider for licensed poster artwork, persistent user watchlists, and collaborative filtering once genuine user interaction data is available.
+ 
