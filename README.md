@@ -16,6 +16,22 @@ A Flask web application that recommends Netflix catalog titles using content-bas
 - JSON endpoints for search and recommendations
 - Clean separation between Flask routes and recommendation logic
 
+## Screenshots
+
+These screenshots are stored in the repository so they appear on GitHub:
+
+### Search and discovery
+
+![CineMatch search and discovery page](static/screenshoot/1,Search.jpg)
+
+### Recommendations
+
+![CineMatch recommendation results](static/screenshoot/2.Result.jpg)
+
+### Recommendation filters
+
+![CineMatch recommendation filters](static/screenshoot/3.Filter.jpg)
+
 ## Project structure
 
 ```text
@@ -34,8 +50,12 @@ CineMatch/
 │   ├── results.html
 │   └── 404.html
 └── static/
-    ├── css/style.css
-    └── js/app.js
+│   ├── css/style.css
+│   ├── js/app.js
+│   └── screenshoot/
+│       ├── 1,Search.jpg
+│       ├── 2.Result.jpg
+│       └── 3.Filter.jpg
 ```
 
 ## Run locally
