@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="hero wrap" id="discover">
+  <div class="hero-copy"><div class="eyebrow"><span class="pulse"></span> YOUR NEXT WATCH STARTS HERE</div>
+    <h1>One great story<br>leads to <span class="gradient-text">another.</span></h1>
+    <p class="hero-lead">Tell us what you loved. Our recommendation engine will find titles with similar stories, genres, casts, and creative teams.</p>
+    <form class="search-panel" action="{{ url_for('recommend') }}" method="get" autocomplete="off">
+      <label for="title-search">WHAT HAVE YOU WATCHED RECENTLY?</label>
+      <div class="search-row"><span class="search-icon">⌕</span><input id="title-search" name="title" value="{{ query|default('') }}" placeholder="Try Stranger Things, Inception..." required><button type="submit">Find my match <span>→</span></button></div>
+      <div class="suggestions" id="suggestions" role="listbox"></div>
+      <div class="search-foot"><span>✦ Smart content-based recommendations</span><span>6,234 catalog titles</span></div>
+    </form>
+    {% if error %}<div class="alert">{{ error }}{% if suggestions %}<div class="suggestion-links">{% for item in suggestions %}<a href="{{ url_for('recommend', title=item.title) }}">{{ item.title }} <small>{{ item.year }}</small></a>{% endfor %}</div>{% endif %}</div>{% endif %}
+    <div class="hero-trust"><div class="avatar-stack"><i>✦</i><i>▶</i><i>◎</i></div><span>Discover something worth watching</span></div>
+  </div>
+  <div class="hero-art" aria-label="Decorative cinematic artwork"><div class="orbit orbit-a"></div><div class="orbit orbit-b"></div><div class="poster poster-back"><span>THE UNKNOWN</span><b>BEYOND<br>THE FRAME</b><small>A STORY UNFOLDS</small></div><div class="poster poster-front"><div class="poster-glow"></div><span class="poster-tag">TONIGHT'S PICK</span><b>FIND<br>YOUR<br><em>NEXT</em><br>STORY.</b><small>YOUR PERSONAL DISCOVERY ENGINE</small></div><div class="floating-chip chip-top"><span>✦</span> Made for your taste</div><div class="floating-chip chip-bottom"><span class="chip-dot"></span> Similarity powered</div></div>
+</section>
+<section class="stats wrap"><div><strong>{{ '{:,}'.format(stats.titles) }}</strong><span>CATALOG TITLES</span></div><div><strong>{{ '{:,}'.format(stats.movies) }}</strong><span>MOVIES</span></div><div><strong>{{ '{:,}'.format(stats.shows) }}</strong><span>TV SHOWS</span></div><div><strong>{{ stats.genres }}</strong><span>GENRE LABELS</span></div></section>
+<section class="section wrap"><div class="section-heading"><div><div class="eyebrow">A LITTLE INSPIRATION</div><h2>Explore the catalog<span class="heading-dot">.</span></h2></div><span class="muted-note">A few titles from the dataset</span></div><div class="title-grid">{% for item in featured %}<article class="title-card"><div class="card-art art-{{ loop.index0 % 6 }}"><span class="art-type">{{ item.type }}</span><span class="art-symbol">{% if loop.index0 % 3 == 0 %}✦{% elif loop.index0 % 3 == 1 %}◈{% else %}✧{% endif %}</span><span class="art-year">{{ item.year }}</span></div><div class="card-info"><h3>{{ item.title }}</h3><p>{{ item.genres[:2]|join(' · ') }}</p><a href="{{ url_for('recommend', title=item.title) }}" aria-label="Get recommendations similar to {{ item.title }}">Explore similar <span>↗</span></a></div></article>{% endfor %}</div></section>
+<section class="how-section" id="how-it-works"><div class="wrap"><div class="eyebrow">BEHIND THE RECOMMENDATIONS</div><h2>Good matches aren't magic.<br><span class="gradient-text">They're machine learning.</span></h2><div class="steps"><div class="step"><span>01</span><h3>Choose a title</h3><p>Start with a movie or series you already enjoy.</p></div><div class="step"><span>02</span><h3>Understand its DNA</h3><p>We analyze genres, cast, directors, country, and synopsis.</p></div><div class="step"><span>03</span><h3>Find your next watch</h3><p>TF-IDF and cosine similarity rank titles with related content.</p></div></div></div></section>
+{% endblock %}
